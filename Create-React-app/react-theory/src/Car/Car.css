@@ -1,0 +1,16 @@
+.Car{
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    display: block;
+    padding: 10px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, .4);
+    border-radius: 5px;
+}
+.input{
+}
+.input.green{
+    border: 2px solid green;
+}
+.input.red{
+    border: 2px solid red;
+}
