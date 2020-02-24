@@ -1,21 +1,22 @@
 import React from 'react';
-import './Car.css'
+import styles from './Car.module.css'
+console.log(styles)
 
 export default props => {
-    const inputClasses = ['input']
+    const inputClasses = [styles.input]
 
     if (props.name !== '') {
-        inputClasses.push('green')
+        inputClasses.push(styles.green)
     } else {
-        inputClasses.push('red')
+        inputClasses.push(styles.red)
     }
 
     if (props.name.length > 4) {
-        inputClasses.push('bold')
+        inputClasses.push(styles.bold)
     }
 
     return (
-        <div className='Car'>
+        <div className={styles.Car}>
             <h3>Car name: {props.name}</h3>
             <p>Year: {props.year}</p>
             <input
