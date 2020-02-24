@@ -10,6 +10,10 @@ export default props => {
         inputClasses.push('red')
     }
 
+    if (props.name.length > 4) {
+        inputClasses.push('bold')
+    }
+
     return (
         <div className='Car'>
             <h3>Car name: {props.name}</h3>
