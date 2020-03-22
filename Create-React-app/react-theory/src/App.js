@@ -55,7 +55,8 @@ class App extends Component {
         return (
             <div className='App' >
               <h1>{this.state.PageTittle}</h1>
-
+              <h1>{this.props.title}</h1>
+            
                 <button
                     className={'AppButton'}
                     onClick={this.toggleCarsHandler}
