@@ -2,37 +2,18 @@ import React, {Component} from 'react'
 import classes from './Quiz.module.css'
 import ActiveQuiz from '../../componets/ActiveQuiz/ActiveQuiz'
 import FinishedQuiz from '../../componets/FinishedQuiz/FinishedQuiz'
+import axios  from '../../axios/axios-quiz'
+import Loader from '../../componets/UI/Loader/Loader'
+
 class Quiz extends Component{
     state = {
         rezults: {},
         activeQuestion: 0,
         answerState: null,
         isFinished: false,
-        quiz: [
-            {
-                question: 'Какого цвета небо?',
-                rightAnswerId: 2,
-                id: 1,
-                answers: [
-                    {text: 'Красный', id: 1},
-                    {text: 'Синий', id: 2},
-                    {text: 'Черный', id: 3},
-                    {text: 'Зеленый', id: 4}
-                ]
-            },
-            {
-                question: 'В каком году основали Санкт-Петербург?',
-                rightAnswerId: 3,
-                id: 2,
-                answers: [
-                    {text: '1700', id: 1},
-                    {text: '1705', id: 2},
-                    {text: '1703', id: 3},
-                    {text: '1803', id: 4}
-                ]
-            }
-        ]
-    }
+        quiz: [],
+        loading: true
+        }
 
     onAnswerClickHendler = (answerId) =>{
         if(this.state.answerState){
@@ -91,14 +72,32 @@ class Quiz extends Component{
         })
     }
 
+    async componentDidMount(){
+        try{
+            const response = await axios.get(`quzes/${this.props.match.params.id}.json`)
+            const quiz = response.data
+            this.setState({
+                quiz,
+                loading: false
+            })
+        }catch(e){
+            console.log(e)
+        }
+    }
+
+    
+
     render(){
         return(
             <div className={classes.Quiz}>
                 
                 <div className={classes.QuizWrapper}>
                     <h1>Ответьте на все вопросы</h1>
+
                     {
-                        this.state.isFinished
+                        this.state.loading
+                        ?<Loader/>
+                        :this.state.isFinished
                         ? <FinishedQuiz
                             rezults={this.state.rezults}
                             quiz={this.state.quiz}
@@ -111,7 +110,7 @@ class Quiz extends Component{
                             quizLenght={this.state.quiz.length}
                             answerNumber={this.state.activeQuestion + 1}
                             state={this.state.answerState}
-                          />
+                          />                      
                     }                    
                 </div>
             </div>

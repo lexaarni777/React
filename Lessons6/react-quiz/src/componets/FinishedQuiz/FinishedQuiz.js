@@ -35,7 +35,6 @@ const successCount = Object.keys(props.rezults).reduce((total, key)=>{
                     )
                 })}
             </ul>
-            {console.log(props.quiz)}
             <p>{successCount} из {props.quiz.length}</p>
 
             <div>
