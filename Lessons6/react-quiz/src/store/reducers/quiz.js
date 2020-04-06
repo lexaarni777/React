@@ -1,5 +1,4 @@
-import { FETCH_QUZES_START, FETCH_QUZES_SUCCESS, FETCH_QUZES_ERROR, FETCH_QUIZ_SUCCESS } from "../actions/ActionTypes"
-import { fetchQuizesError } from "../actions/quiz"
+import { FETCH_QUZES_START, FETCH_QUZES_SUCCESS, FETCH_QUZES_ERROR, FETCH_QUIZ_SUCCESS, QUIZ_SET_STATE, FINISH_QUIZ, QUIZ_NEXT_QESTION, RETRY_QUIZ } from "../actions/ActionTypes"
 
 const initialState = {
     quizes: [],
@@ -29,6 +28,22 @@ switch(action.type){
     case FETCH_QUIZ_SUCCESS:
         return {
             ...state, loading: false, quiz: action.quiz
+        }
+    case QUIZ_SET_STATE:
+        return {
+            ...state, answerState: action.answerState, rezults: action.rezults
+        }
+    case FINISH_QUIZ:
+        return {
+            ...state, isFinished: true
+        }
+    case QUIZ_NEXT_QESTION:
+        return{
+            ...state, answerState: null, activeQuestion: action.number
+        }
+    case RETRY_QUIZ:
+        return{
+            ...state, activeQuestion: 0, answerState: null, isFinished: false, rezults: {}
         }
     default:
         return state

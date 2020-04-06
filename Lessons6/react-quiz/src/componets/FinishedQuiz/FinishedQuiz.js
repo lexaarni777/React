@@ -38,6 +38,7 @@ const successCount = Object.keys(props.rezults).reduce((total, key)=>{
             <p>{successCount} из {props.quiz.length}</p>
 
             <div>
+                {console.log(props)}
                 <Button onClick={props.onRetry} type='primary'>Повторить</Button>
                 <Link to='/'>
                     <Button type='success'>Перейти к списку вопросов</Button>
