@@ -33,7 +33,6 @@ class Quiz extends Component{
                 
                 <div className={classes.QuizWrapper}>
                     <h1>Ответьте на все вопросы</h1>
-                    {console.log(this.props.retryQuiz)}
                     {
                         
                         
